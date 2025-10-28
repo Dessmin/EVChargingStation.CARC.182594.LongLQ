@@ -1,0 +1,37 @@
+services:
+  evchargingstation.api:
+    image: ch1mple/evchargingstation-api:latest
+    build:
+      context: .
+      dockerfile: EVChargingStation.CARC.WebAPI.LongLQ/Dockerfile
+    depends_on:
+      evchargingstation.database:
+        condition: service_healthy
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=evchargingstation.database;Port=5432;Database=FA25_SWD392_SE182594_G6_EvChargingStation;Username=postgres;Password=postgres;TimeZone=Asia/Ho_Chi_Minh
+      - JWT__SecretKey=EVChargingStation_SECRETKEY_SIEUCAPBAOMAT_VAYMACHUADU16KYTU
+      - JWT__Issuer=EVChargingStation_Issuer
+      - JWT__Audience=EVChargingStation_Audience
+    ports:
+      - "5001:5000"
+
+  evchargingstation.database:
+    image: postgres:18
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: FA25_SWD392_SE182594_G6_EvChargingStation
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:

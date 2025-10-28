@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36429.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{81DDED9D-158B-E303-5F62-77A2896D2A5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EVChargingStation.CARC.Application.LongLQ", "EVChargingStation.CARC.Application.LongLQ\EVChargingStation.CARC.Application.LongLQ.csproj", "{AD0B93E1-49C1-88FD-1884-2BE6CC460E9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EVChargingStation.CARC.Domain.LongLQ", "EVChargingStation.CARC.Domain.LongLQ\EVChargingStation.CARC.Domain.LongLQ.csproj", "{86749D89-21FB-9FDA-BA8B-898CF6E2BF83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EVChargingStation.CARC.Infrastructure.LongLQ", "EVChargingStation.CARC.Infrastructure.LongLQ\EVChargingStation.CARC.Infrastructure.LongLQ.csproj", "{2A8D366B-EC5A-C106-953A-78EDF18444D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EVChargingStation.CARC.WebAPI.LongLQ", "EVChargingStation.CARC.WebAPI.LongLQ\EVChargingStation.CARC.WebAPI.LongLQ.csproj", "{E5AAC585-34E5-7C07-1BB7-669C64237538}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD0B93E1-49C1-88FD-1884-2BE6CC460E9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD0B93E1-49C1-88FD-1884-2BE6CC460E9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD0B93E1-49C1-88FD-1884-2BE6CC460E9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD0B93E1-49C1-88FD-1884-2BE6CC460E9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86749D89-21FB-9FDA-BA8B-898CF6E2BF83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86749D89-21FB-9FDA-BA8B-898CF6E2BF83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86749D89-21FB-9FDA-BA8B-898CF6E2BF83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86749D89-21FB-9FDA-BA8B-898CF6E2BF83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A8D366B-EC5A-C106-953A-78EDF18444D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A8D366B-EC5A-C106-953A-78EDF18444D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A8D366B-EC5A-C106-953A-78EDF18444D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A8D366B-EC5A-C106-953A-78EDF18444D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5AAC585-34E5-7C07-1BB7-669C64237538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5AAC585-34E5-7C07-1BB7-669C64237538}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5AAC585-34E5-7C07-1BB7-669C64237538}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5AAC585-34E5-7C07-1BB7-669C64237538}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59BD3983-29FC-4C4A-BC4C-8228E736697E}
+	EndGlobalSection
+EndGlobal

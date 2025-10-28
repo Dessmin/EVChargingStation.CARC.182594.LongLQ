@@ -1,0 +1,9 @@
+namespace EVChargingStation.CARC.Domain.LongLQ.Enums
+{
+    public enum PlanType
+    {
+        Prepaid = 0,
+        Postpaid = 1,
+        VIP = 2
+    }
+}
