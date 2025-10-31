@@ -21,9 +21,7 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy.WithOrigins(
-                "https://evchargingstation.ae-tao-fullstack-api.site",  // Production
-                "http://localhost:3000",                                // Local dev
-                "http://localhost:3001"                                 // Local dev
+                "http://localhost:3000"                                // Local dev
             )
             .AllowAnyHeader()
             .AllowAnyMethod()
@@ -73,13 +71,13 @@ try
 {
     app.ApplyMigrations(app.Logger);
 
-    // Seed reservation related data (does not create users)
-    using (var scope = app.Services.CreateScope())
-    {
-        var context = scope.ServiceProvider.GetRequiredService<EVChargingStation.CARC.Domain.LongLQ.FA25_SWD392_SE182594_G6_EvChargingStation>();
-        await EVChargingStation.CARC.Infrastructure.LongLQ.SeedData.ReservationSeedData.SeedAsync(context);
-        app.Logger.LogInformation("Reservation seed completed.");
-    }
+    //// Seed reservation related data (does not create users)
+    //using (var scope = app.Services.CreateScope())
+    //{
+    //    var context = scope.ServiceProvider.GetRequiredService<EVChargingStation.CARC.Domain.LongLQ.FA25_SWD392_SE182594_G6_EvChargingStation>();
+    //    await EVChargingStation.CARC.Infrastructure.LongLQ.SeedData.ReservationSeedData.SeedAsync(context);
+    //    app.Logger.LogInformation("Reservation seed completed.");
+    //}
 }
 catch (Exception e)
 {
