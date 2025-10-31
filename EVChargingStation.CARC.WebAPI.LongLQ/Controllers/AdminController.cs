@@ -1,10 +1,12 @@
 using EVChargingStation.CARC.Domain.LongLQ;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EVChargingStation.CARC.WebAPI.LongLQ.Controllers
 {
     [ApiController]
     [Route("api/admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : ControllerBase
     {
         private readonly FA25_SWD392_SE182594_G6_EvChargingStation _dbContext;

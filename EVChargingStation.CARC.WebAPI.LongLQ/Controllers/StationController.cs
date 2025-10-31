@@ -2,6 +2,7 @@ using EVChargingStation.CARC.Application.LongLQ.DTOs.StationDTOs;
 using EVChargingStation.CARC.Application.LongLQ.Interfaces;
 using EVChargingStation.CARC.Application.LongLQ.Utils;
 using EVChargingStation.CARC.Infrastructure.LongLQ.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -9,6 +10,7 @@ namespace EVChargingStation.CARC.WebAPI.LongLQ.Controllers
 {
     [Route("api/stations")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class StationController : ControllerBase
     {
         private readonly IStationService _stationService;

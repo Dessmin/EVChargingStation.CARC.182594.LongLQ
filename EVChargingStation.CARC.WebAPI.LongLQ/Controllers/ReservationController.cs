@@ -4,6 +4,7 @@ using EVChargingStation.CARC.Application.LongLQ.Utils;
 using EVChargingStation.CARC.Domain.LongLQ.Enums;
 using EVChargingStation.CARC.Infrastructure.LongLQ.Commons;
 using EVChargingStation.CARC.Infrastructure.LongLQ.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -11,6 +12,7 @@ namespace EVChargingStation.CARC.WebAPI.LongLQ.Controllers
 {
     [Route("api/reservations")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class ReservationController : ControllerBase
     {
         private readonly IReservationService _reservationService;

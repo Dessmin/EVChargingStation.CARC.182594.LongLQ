@@ -151,12 +151,6 @@ public static class IocContainer
             });
         services.AddAuthorization(options =>
         {
-            options.AddPolicy("DriverPolicy", policy =>
-                policy.RequireRole("Driver"));
-
-            options.AddPolicy("StaffPolicy", policy =>
-                policy.RequireRole("Staff"));
-
             options.AddPolicy("AdminPolicy", policy =>
                 policy.RequireRole("Admin"));
         });
