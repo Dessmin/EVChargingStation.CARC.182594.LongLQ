@@ -1,4 +1,5 @@
 ﻿using EVChargingStation.CARC.Application.LongLQ.DTOs.ReservationDTOs;
+using EVChargingStation.CARC.Application.LongLQ.DTOs.StationDTOs;
 using EVChargingStation.CARC.Application.LongLQ.Interfaces;
 using EVChargingStation.CARC.Domain.LongLQ.Entities;
 using EVChargingStation.CARC.Domain.LongLQ.Enums;
@@ -45,17 +46,28 @@ namespace EVChargingStation.CARC.Application.LongLQ.Services
                     var user = await _unitOfWork.Users.GetByIdAsync(r.UserId);
                     var station = await _unitOfWork.StationAnhDHVs.GetByIdAsync(r.StationAnhDHVId);
                     var connector = await _unitOfWork.Connectors.GetByIdAsync(r.ConnectorId);
+
+                    var stationDto = new StationConnectorsDto
+                    {
+                        StationId = station.LongLQID,
+                        Name = station.Name,
+                        Connectors = station.Connectors.Select(c => new ConnectorInfoDto
+                        {
+                            ConnectorId = c.LongLQID,
+                            ConnectorType = c.ConnectorType,
+                            PowerKw = c.PowerKw
+                        }).ToList()
+                    };
+
                     items.Add(new ReservationDto
                     {
                         Id = r.LongLQID,
                         User = user.FirstName,
-                        StationName = station?.Name ?? string.Empty,
-                        ConnectorType = connector?.ConnectorType ?? ConnectorType.Unknown,
-                        MinPowerKw = r.MinPowerKw,
                         Status = r.Status,
                         StartTime = r.StartTime,
                         EndTime = r.EndTime,
-                        CreatedAt = r.CreatedAt
+                        CreatedAt = r.CreatedAt,
+                        Station = stationDto
                     });
                 }
 
@@ -78,17 +90,28 @@ namespace EVChargingStation.CARC.Application.LongLQ.Services
                 var user = await _unitOfWork.Users.GetByIdAsync(r.UserId);
                 var station = await _unitOfWork.StationAnhDHVs.GetByIdAsync(r.StationAnhDHVId);
                 var connector = await _unitOfWork.Connectors.GetByIdAsync(r.ConnectorId);
+
+                var stationDto = new StationConnectorsDto
+                {
+                    StationId = station.LongLQID,
+                    Name = station.Name,
+                    Connectors = station.Connectors.Select(c => new ConnectorInfoDto
+                    {
+                        ConnectorId = c.LongLQID,
+                        ConnectorType = c.ConnectorType,
+                        PowerKw = c.PowerKw
+                    }).ToList()
+                };
+
                 return new ReservationDto
                 {
                     Id = r.LongLQID,
                     User = user.FirstName,
-                    StationName = station?.Name ?? string.Empty,
-                    ConnectorType = connector?.ConnectorType ?? ConnectorType.Unknown,
-                    MinPowerKw = r.MinPowerKw,
                     Status = r.Status,
                     StartTime = r.StartTime,
                     EndTime = r.EndTime,
-                    CreatedAt = r.CreatedAt
+                    CreatedAt = r.CreatedAt,
+                    Station = stationDto
                 };
             }
             catch (Exception ex)
@@ -190,13 +213,21 @@ namespace EVChargingStation.CARC.Application.LongLQ.Services
                 {
                     Id = reservation.LongLQID,
                     User = user.FirstName,
-                    StationName = station.Name,
-                    ConnectorType = connector.ConnectorType,
-                    MinPowerKw = reservation.MinPowerKw,
                     Status = reservation.Status,
                     StartTime = reservation.StartTime,
                     EndTime = reservation.EndTime,
-                    CreatedAt = reservation.CreatedAt
+                    CreatedAt = reservation.CreatedAt,
+                    Station = new StationConnectorsDto
+                    {
+                        StationId = station.LongLQID,
+                        Name = station.Name,
+                        Connectors = station.Connectors.Select(c => new ConnectorInfoDto
+                        {
+                            ConnectorId = c.LongLQID,
+                            ConnectorType = c.ConnectorType,
+                            PowerKw = c.PowerKw
+                        }).ToList()
+                    },
                 };
             }
             catch (Exception ex)
@@ -275,6 +306,7 @@ namespace EVChargingStation.CARC.Application.LongLQ.Services
                     _logger.LogWarning("StartTime cannot be in the past: {Start}", dto.StartTime);
                     throw new Exception("StartTime cannot be in the past.");
                 }
+
                 var sessionOverlap = false;
                 sessionOverlap = await _unitOfWork.Sessions.GetQueryable()
                     .AnyAsync(r => r.ConnectorId == dto.ConnectorId && r.Status == SessionStatus.Reserved &&
@@ -378,13 +410,21 @@ namespace EVChargingStation.CARC.Application.LongLQ.Services
                 {
                     Id = reservation.LongLQID,
                     User = user.FirstName,
-                    StationName = station?.Name ?? string.Empty,
-                    ConnectorType = resConnector?.ConnectorType ?? ConnectorType.Unknown,
-                    MinPowerKw = reservation.MinPowerKw,
                     Status = reservation.Status,
                     StartTime = reservation.StartTime,
                     EndTime = reservation.EndTime,
-                    CreatedAt = reservation.CreatedAt
+                    CreatedAt = reservation.CreatedAt,
+                    Station = new StationConnectorsDto
+                    {
+                        StationId = station.LongLQID,
+                        Name = station.Name,
+                        Connectors = station.Connectors.Select(c => new ConnectorInfoDto
+                        {
+                            ConnectorId = c.LongLQID,
+                            ConnectorType = c.ConnectorType,
+                            PowerKw = c.PowerKw
+                        }).ToList()
+                    },
                 };
             }
             catch (Exception ex)
